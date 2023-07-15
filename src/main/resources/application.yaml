@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: infoVoli
+
+  data:
+    jpa:
+      repository:
+        bootstrap-mode: DEFAULT
+
+  datasource:
+    driver-class-name: com.ibm.db2.jcc.DB2Driver
+    url: jdbc:db2://db2test.jobinformatica.com:50000/TEST:currentSchema=TEST;
+    username: accesso
+    password: Belen01
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.DB2Dialect
+  sql:
+    init:
+      node: never
+
+logging:
+  level:
+    it:
+      jobinformatica:
+        infoVoli: INFO
