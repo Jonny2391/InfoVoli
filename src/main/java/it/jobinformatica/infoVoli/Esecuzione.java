@@ -14,13 +14,11 @@ import java.util.ArrayList;
 @Component
 @Slf4j
 public class Esecuzione {
-    private VoloRepository voloRepository;
-
     ArrayList<RecordDati> records = null;
     Object[][] dati = null;
 
     public void start(String citta) {
-        this.voloRepository = BeanUtil.getBean(VoloRepository.class);
+        VoloRepository voloRepository = BeanUtil.getBean(VoloRepository.class);
 
         //Lettura dati da DB
         log.info("Inizio lettura db");
@@ -28,8 +26,8 @@ public class Esecuzione {
 
         //Trasformazione dati per scrittura in excel
         log.info("Trasformazione dati");
-        dati = new Object[records.size() + 2][RecordDati.NUM_CAMPI];
-        dati[0] = RecordDati.ritornaIntestazione();
+        dati = new Object[records.size() + 2][RecordDati.class.getDeclaredFields().length];
+        dati[0] = new RecordDati().ritornaIntestazioniColonne();
 
         int cont = 2;
         for(RecordDati r : records){

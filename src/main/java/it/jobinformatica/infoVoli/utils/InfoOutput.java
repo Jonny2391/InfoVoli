@@ -14,12 +14,12 @@ public class InfoOutput {
         XSSFWorkbook fileExcel = new XSSFWorkbook();
         XSSFSheet foglioExcel = fileExcel.createSheet(nomeFoglio);
 
-        int nRiga = 0;
+        int nRiga = -1;
 
         for (Object[] rigaDati : dati) {
             Row riga = foglioExcel.createRow(++nRiga);
 
-            int nColonna = 0;
+            int nColonna = -1;
 
             for (Object dato : rigaDati) {
                 Cell cella = riga.createCell(++nColonna);
@@ -32,8 +32,7 @@ public class InfoOutput {
 
         }
 
-        try {
-            FileOutputStream outputStream = new FileOutputStream(nomeFile + ".xlsx");
+        try (FileOutputStream outputStream = new FileOutputStream(nomeFile + ".xlsx")) {
             fileExcel.write(outputStream);
             log.info("File xls prodotto");
         } catch (Exception ex) {

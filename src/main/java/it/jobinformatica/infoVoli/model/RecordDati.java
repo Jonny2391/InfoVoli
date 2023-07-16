@@ -2,6 +2,7 @@ package it.jobinformatica.infoVoli.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
@@ -9,8 +10,8 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @AllArgsConstructor
-public class RecordDati {
-    public static final int NUM_CAMPI = 5;
+@NoArgsConstructor
+public class RecordDati extends AbstractRecordDati{
 
     private String idVolo;
     private LocalDateTime giornoSett;
@@ -22,7 +23,7 @@ public class RecordDati {
         return new Object[]{idVolo, giornoSett.toLocalDate().toString(), cittaPart, tipoAereo, numPasseggeri};
     }
 
-    public static Object[] ritornaIntestazione() {
-        return new Object[]{"Id volo","Giorno settimana","Citta di partenza","Tipo aereo","Numero passeggeri"};
+    public String[] ritornaIntestazioniColonne() {
+        return new String[]{"Id volo","Giorno settimana","Citta di partenza","Tipo aereo","Numero passeggeri"};
     }
 }
